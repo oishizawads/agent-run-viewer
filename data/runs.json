@@ -1,0 +1,676 @@
+{
+  "runs": [
+    {
+      "id": "run-001",
+      "name": "Research topic and write summary",
+      "agent": "research-agent",
+      "model": "agent-model-a",
+      "startedAt": "2026-07-01T10:00:00Z",
+      "endedAt": "2026-07-01T10:01:32.000Z",
+      "status": "completed",
+      "tags": [
+        "research",
+        "summary"
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "name": "Plan task",
+          "type": "plan",
+          "status": "success",
+          "startedAt": "2026-07-01T10:00:00.000Z",
+          "endedAt": "2026-07-01T10:00:02.000Z",
+          "durationMs": 2000,
+          "message": "Decomposed task into search, read, and write steps."
+        },
+        {
+          "id": "s2",
+          "name": "Search documents",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T10:00:02.000Z",
+          "endedAt": "2026-07-01T10:00:09.000Z",
+          "durationMs": 7000,
+          "tool": "search",
+          "toolInput": {
+            "query": "renewable energy storage 2026"
+          },
+          "toolOutput": "Returned 8 candidate documents.",
+          "message": "Top results retrieved."
+        },
+        {
+          "id": "s3",
+          "name": "Read document 1",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T10:00:09.000Z",
+          "endedAt": "2026-07-01T10:00:18.000Z",
+          "durationMs": 9000,
+          "tool": "read",
+          "toolInput": {
+            "docId": "doc-1"
+          },
+          "toolOutput": "Extracted 12 key points.",
+          "message": "Read primary source."
+        },
+        {
+          "id": "s4",
+          "name": "Read document 2",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T10:00:18.000Z",
+          "endedAt": "2026-07-01T10:00:27.000Z",
+          "durationMs": 9000,
+          "tool": "read",
+          "toolInput": {
+            "docId": "doc-2"
+          },
+          "toolOutput": "Extracted 7 key points.",
+          "message": "Read secondary source."
+        },
+        {
+          "id": "s5",
+          "name": "Synthesize notes",
+          "type": "reasoning",
+          "status": "success",
+          "startedAt": "2026-07-01T10:00:27.000Z",
+          "endedAt": "2026-07-01T10:01:10.000Z",
+          "durationMs": 43000,
+          "message": "Merged points into an outline."
+        },
+        {
+          "id": "s6",
+          "name": "Write summary",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T10:01:10.000Z",
+          "endedAt": "2026-07-01T10:01:30.000Z",
+          "durationMs": 20000,
+          "tool": "write",
+          "toolInput": {
+            "path": "out/summary.md"
+          },
+          "toolOutput": "Wrote 540 words.",
+          "message": "Drafted summary file."
+        },
+        {
+          "id": "s7",
+          "name": "Finalize",
+          "type": "output",
+          "status": "success",
+          "startedAt": "2026-07-01T10:01:30.000Z",
+          "endedAt": "2026-07-01T10:01:32.000Z",
+          "durationMs": 2000,
+          "message": "Returned summary path to caller."
+        }
+      ]
+    },
+    {
+      "id": "run-002",
+      "name": "Fetch and transform dataset",
+      "agent": "data-agent",
+      "model": "agent-model-b",
+      "startedAt": "2026-07-01T11:20:00Z",
+      "endedAt": "2026-07-01T11:20:41.000Z",
+      "status": "failed",
+      "tags": [
+        "data",
+        "etl"
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "name": "Plan task",
+          "type": "plan",
+          "status": "success",
+          "startedAt": "2026-07-01T11:20:00.000Z",
+          "endedAt": "2026-07-01T11:20:03.000Z",
+          "durationMs": 3000,
+          "message": "Planned fetch then transform."
+        },
+        {
+          "id": "s2",
+          "name": "Fetch dataset",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T11:20:03.000Z",
+          "endedAt": "2026-07-01T11:20:14.000Z",
+          "durationMs": 11000,
+          "tool": "fetch",
+          "toolInput": {
+            "source": "public-feed"
+          },
+          "toolOutput": "Downloaded 1,204 rows.",
+          "message": "Dataset downloaded."
+        },
+        {
+          "id": "s3",
+          "name": "Validate schema",
+          "type": "tool",
+          "status": "failed",
+          "startedAt": "2026-07-01T11:20:14.000Z",
+          "endedAt": "2026-07-01T11:20:20.000Z",
+          "durationMs": 6000,
+          "tool": "validate",
+          "toolInput": {
+            "schema": "v2"
+          },
+          "toolOutput": null,
+          "error": "Schema mismatch: missing required field 'timestamp'.",
+          "message": "Validation failed."
+        },
+        {
+          "id": "s4",
+          "name": "Transform dataset",
+          "type": "tool",
+          "status": "skipped",
+          "startedAt": "2026-07-01T11:20:20.000Z",
+          "endedAt": "2026-07-01T11:20:20.000Z",
+          "durationMs": 0,
+          "tool": "transform",
+          "toolInput": {
+            "format": "parquet"
+          },
+          "toolOutput": null,
+          "message": "Skipped because validation failed."
+        },
+        {
+          "id": "s5",
+          "name": "Report failure",
+          "type": "output",
+          "status": "success",
+          "startedAt": "2026-07-01T11:20:20.000Z",
+          "endedAt": "2026-07-01T11:20:41.000Z",
+          "durationMs": 21000,
+          "message": "Reported schema error to caller."
+        }
+      ]
+    },
+    {
+      "id": "run-003",
+      "name": "Answer multi-part question",
+      "agent": "qa-agent",
+      "model": "agent-model-a",
+      "startedAt": "2026-07-01T12:05:00Z",
+      "endedAt": "2026-07-01T12:06:15.000Z",
+      "status": "partial",
+      "tags": [
+        "qa"
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "name": "Plan task",
+          "type": "plan",
+          "status": "success",
+          "startedAt": "2026-07-01T12:05:00.000Z",
+          "endedAt": "2026-07-01T12:05:04.000Z",
+          "durationMs": 4000,
+          "message": "Split into 3 sub-questions."
+        },
+        {
+          "id": "s2",
+          "name": "Look up fact A",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T12:05:04.000Z",
+          "endedAt": "2026-07-01T12:05:12.000Z",
+          "durationMs": 8000,
+          "tool": "lookup",
+          "toolInput": {
+            "key": "fact-a"
+          },
+          "toolOutput": "Found authoritative value.",
+          "message": "Resolved sub-question 1."
+        },
+        {
+          "id": "s3",
+          "name": "Look up fact B",
+          "type": "tool",
+          "status": "failed",
+          "startedAt": "2026-07-01T12:05:12.000Z",
+          "endedAt": "2026-07-01T12:05:19.000Z",
+          "durationMs": 7000,
+          "tool": "lookup",
+          "toolInput": {
+            "key": "fact-b"
+          },
+          "toolOutput": null,
+          "error": "No matching entry found for 'fact-b'.",
+          "message": "Sub-question 2 unresolved."
+        },
+        {
+          "id": "s4",
+          "name": "Look up fact C",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T12:05:19.000Z",
+          "endedAt": "2026-07-01T12:05:28.000Z",
+          "durationMs": 9000,
+          "tool": "lookup",
+          "toolInput": {
+            "key": "fact-c"
+          },
+          "toolOutput": "Found authoritative value.",
+          "message": "Resolved sub-question 3."
+        },
+        {
+          "id": "s5",
+          "name": "Compose answer",
+          "type": "reasoning",
+          "status": "success",
+          "startedAt": "2026-07-01T12:05:28.000Z",
+          "endedAt": "2026-07-01T12:06:10.000Z",
+          "durationMs": 42000,
+          "message": "Composed answer with a gap noted for fact B."
+        },
+        {
+          "id": "s6",
+          "name": "Emit answer",
+          "type": "output",
+          "status": "success",
+          "startedAt": "2026-07-01T12:06:10.000Z",
+          "endedAt": "2026-07-01T12:06:15.000Z",
+          "durationMs": 5000,
+          "message": "Returned partial answer to caller."
+        }
+      ]
+    },
+    {
+      "id": "run-004",
+      "name": "Batch classify 24 items",
+      "agent": "classify-agent",
+      "model": "agent-model-c",
+      "startedAt": "2026-07-01T13:40:00Z",
+      "endedAt": "2026-07-01T13:42:23.200Z",
+      "status": "completed",
+      "tags": [
+        "batch",
+        "classify"
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "name": "Plan batch",
+          "type": "plan",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:00.000Z",
+          "endedAt": "2026-07-01T13:40:02.000Z",
+          "durationMs": 2000,
+          "message": "Planned 24 classify calls."
+        },
+        {
+          "id": "s2",
+          "name": "Classify item 1",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:02.000Z",
+          "endedAt": "2026-07-01T13:40:07.800Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 1
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 1."
+        },
+        {
+          "id": "s3",
+          "name": "Classify item 2",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:07.800Z",
+          "endedAt": "2026-07-01T13:40:13.600Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 2
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 2."
+        },
+        {
+          "id": "s4",
+          "name": "Classify item 3",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:13.600Z",
+          "endedAt": "2026-07-01T13:40:19.400Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 3
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 3."
+        },
+        {
+          "id": "s5",
+          "name": "Classify item 4",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:19.400Z",
+          "endedAt": "2026-07-01T13:40:25.200Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 4
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 4."
+        },
+        {
+          "id": "s6",
+          "name": "Classify item 5",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:25.200Z",
+          "endedAt": "2026-07-01T13:40:31.000Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 5
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 5."
+        },
+        {
+          "id": "s7",
+          "name": "Classify item 6",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:31.000Z",
+          "endedAt": "2026-07-01T13:40:36.800Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 6
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 6."
+        },
+        {
+          "id": "s8",
+          "name": "Classify item 7",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:36.800Z",
+          "endedAt": "2026-07-01T13:40:42.600Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 7
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 7."
+        },
+        {
+          "id": "s9",
+          "name": "Classify item 8",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:42.600Z",
+          "endedAt": "2026-07-01T13:40:48.400Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 8
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 8."
+        },
+        {
+          "id": "s10",
+          "name": "Classify item 9",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:48.400Z",
+          "endedAt": "2026-07-01T13:40:54.200Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 9
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 9."
+        },
+        {
+          "id": "s11",
+          "name": "Classify item 10",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:40:54.200Z",
+          "endedAt": "2026-07-01T13:41:00.000Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 10
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 10."
+        },
+        {
+          "id": "s12",
+          "name": "Classify item 11",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:00.000Z",
+          "endedAt": "2026-07-01T13:41:05.800Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 11
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 11."
+        },
+        {
+          "id": "s13",
+          "name": "Classify item 12",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:05.800Z",
+          "endedAt": "2026-07-01T13:41:11.600Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 12
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 12."
+        },
+        {
+          "id": "s14",
+          "name": "Classify item 13",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:11.600Z",
+          "endedAt": "2026-07-01T13:41:17.400Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 13
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 13."
+        },
+        {
+          "id": "s15",
+          "name": "Classify item 14",
+          "type": "tool",
+          "status": "failed",
+          "startedAt": "2026-07-01T13:41:17.400Z",
+          "endedAt": "2026-07-01T13:41:23.200Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 14
+          },
+          "toolOutput": null,
+          "error": "Classifier timed out for item 14.",
+          "message": "Item 14 failed; retried once and skipped."
+        },
+        {
+          "id": "s16",
+          "name": "Classify item 15",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:23.200Z",
+          "endedAt": "2026-07-01T13:41:29.000Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 15
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 15."
+        },
+        {
+          "id": "s17",
+          "name": "Classify item 16",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:29.000Z",
+          "endedAt": "2026-07-01T13:41:34.800Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 16
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 16."
+        },
+        {
+          "id": "s18",
+          "name": "Classify item 17",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:34.800Z",
+          "endedAt": "2026-07-01T13:41:40.600Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 17
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 17."
+        },
+        {
+          "id": "s19",
+          "name": "Classify item 18",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:40.600Z",
+          "endedAt": "2026-07-01T13:41:46.400Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 18
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 18."
+        },
+        {
+          "id": "s20",
+          "name": "Classify item 19",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:46.400Z",
+          "endedAt": "2026-07-01T13:41:52.200Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 19
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 19."
+        },
+        {
+          "id": "s21",
+          "name": "Classify item 20",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:52.200Z",
+          "endedAt": "2026-07-01T13:41:58.000Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 20
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 20."
+        },
+        {
+          "id": "s22",
+          "name": "Classify item 21",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:41:58.000Z",
+          "endedAt": "2026-07-01T13:42:03.800Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 21
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 21."
+        },
+        {
+          "id": "s23",
+          "name": "Classify item 22",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:42:03.800Z",
+          "endedAt": "2026-07-01T13:42:09.600Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 22
+          },
+          "toolOutput": "label-1",
+          "message": "Classified item 22."
+        },
+        {
+          "id": "s24",
+          "name": "Classify item 23",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:42:09.600Z",
+          "endedAt": "2026-07-01T13:42:15.400Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 23
+          },
+          "toolOutput": "label-2",
+          "message": "Classified item 23."
+        },
+        {
+          "id": "s25",
+          "name": "Classify item 24",
+          "type": "tool",
+          "status": "success",
+          "startedAt": "2026-07-01T13:42:15.400Z",
+          "endedAt": "2026-07-01T13:42:21.200Z",
+          "durationMs": 5800,
+          "tool": "classify",
+          "toolInput": {
+            "item": 24
+          },
+          "toolOutput": "label-3",
+          "message": "Classified item 24."
+        },
+        {
+          "id": "s26",
+          "name": "Finalize batch",
+          "type": "output",
+          "status": "success",
+          "startedAt": "2026-07-01T13:42:21.200Z",
+          "endedAt": "2026-07-01T13:42:23.200Z",
+          "durationMs": 2000,
+          "message": "Returned 23 labels and 1 skip."
+        }
+      ]
+    }
+  ]
+}

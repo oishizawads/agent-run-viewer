@@ -1,0 +1,40 @@
+{
+  "name": "agent-run-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync-data": "node scripts/sync-data.mjs",
+    "gen-data": "node scripts/generate-sample-data.mjs && node scripts/sync-data.mjs",
+    "predev": "npm run sync-data",
+    "prebuild": "npm run sync-data",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "22.10.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.5.2",
+    "eslint": "9.0.0",
+    "eslint-config-next": "16.2.10",
+    "jsdom": "25.0.1",
+    "postcss": "8.5.16",
+    "tailwindcss": "3.4.19",
+    "typescript": "5.6.3",
+    "vitest": "3.2.6"
+  }
+}

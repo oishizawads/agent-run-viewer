@@ -12,7 +12,9 @@ export interface LoadResult extends ValidationResult {
  * a structured LoadResult with status "error" and an empty runs array so
  * the UI can render an empty/error state instead of crashing.
  */
-export async function loadRuns(url = '/data/runs.json'): Promise<LoadResult> {
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+export async function loadRuns(url = `${BASE_PATH}/data/runs.json`): Promise<LoadResult> {
   try {
     const res = await fetch(url);
     if (!res.ok) {

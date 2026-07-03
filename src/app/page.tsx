@@ -34,7 +34,10 @@ export default function Page() {
     <main className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
-          <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-teal-700">
+            AI Observability
+          </p>
+          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             Agent Run Viewer
           </h1>
           <p className="mt-1 text-sm text-slate-500">

@@ -16,7 +16,7 @@ export function Tabs({ tabs, defaultId }: { tabs: TabDef[]; defaultId?: string }
     <div>
       <div
         role="tablist"
-        className="flex flex-wrap gap-1 overflow-x-auto border-b border-slate-200"
+        className="flex flex-wrap gap-1 overflow-x-auto border-b border-[rgba(13,21,38,0.10)]"
       >
         {tabs.map((t) => {
           const selected = t.id === current.id;
@@ -27,10 +27,10 @@ export function Tabs({ tabs, defaultId }: { tabs: TabDef[]; defaultId?: string }
               type="button"
               aria-selected={selected}
               onClick={() => setActive(t.id)}
-              className={`whitespace-nowrap rounded-t-md px-3 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${
+              className={`whitespace-nowrap rounded-t-md px-3 py-2 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent ${
                 selected
-                  ? 'border-b-2 border-sky-500 text-sky-600'
-                  : 'text-slate-500 hover:text-slate-800'
+                  ? 'border-b-2 border-brand-accent text-brand-accent-strong'
+                  : 'text-brand-muted hover:text-brand-ink'
               }`}
             >
               {t.label}

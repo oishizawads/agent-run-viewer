@@ -18,11 +18,14 @@ export function statusTone(status: string): Tone {
   }
 }
 
+// Semantic colors aligned to design-system §1.2:
+// success #15803d / error #b91c1c / warn #b45309
 const TONE_CLASSES: Record<Tone, string> = {
-  success: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20',
-  failed: 'bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-600/20',
-  partial: 'bg-amber-50 text-amber-800 ring-1 ring-inset ring-amber-600/20',
-  skipped: 'bg-slate-100 text-slate-600 ring-1 ring-inset ring-slate-500/20',
+  success: 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-700/20',
+  failed: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-700/20',
+  partial: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-700/20',
+  skipped:
+    'bg-[rgba(13,21,38,0.05)] text-brand-muted ring-1 ring-inset ring-[rgba(13,21,38,0.12)]',
 };
 
 export function StatusBadge({
@@ -36,7 +39,7 @@ export function StatusBadge({
   const label = status || 'unknown';
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${TONE_CLASSES[tone]} ${className}`}
+      className={`inline-flex items-center rounded-chip px-2.5 py-0.5 text-xs font-medium capitalize ${TONE_CLASSES[tone]} ${className}`}
     >
       {label}
     </span>

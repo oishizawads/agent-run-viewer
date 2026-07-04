@@ -25,18 +25,18 @@ export function RunCard({
       type="button"
       onClick={() => onSelect?.(run.id)}
       aria-pressed={active}
-      className={`group w-full rounded-lg border p-4 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 ${
+      className={`group w-full rounded-card border p-4 text-left transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent ${
         active
-          ? 'border-sky-400 bg-sky-50'
-          : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
+          ? 'border-brand-accent bg-[#f0fdfa] shadow-card'
+          : 'border-[rgba(13,21,38,0.10)] bg-brand-surface shadow-card hover:-translate-y-0.5 hover:shadow-hover'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="truncate text-sm font-semibold text-slate-900">
+          <h3 className="truncate font-display text-sm font-semibold text-brand-ink">
             {run.name}
           </h3>
-          <p className="mt-0.5 truncate text-xs text-slate-500">
+          <p className="mt-0.5 truncate text-xs text-brand-muted">
             {run.id} · {run.agent}
           </p>
         </div>
@@ -47,10 +47,10 @@ export function RunCard({
         <Stat label="Steps" value={String(stepCount(run))} />
         <Stat label="Tools" value={String(tools)} />
       </dl>
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-brand-muted">
         <span>{formatDateTime(run.startedAt)}</span>
         {failed > 0 ? (
-          <span className="font-medium text-rose-600">{failed} failed</span>
+          <span className="font-medium text-brand-error">{failed} failed</span>
         ) : null}
       </div>
     </button>
@@ -60,8 +60,8 @@ export function RunCard({
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="min-w-0">
-      <dt className="text-slate-400">{label}</dt>
-      <dd className="truncate font-medium text-slate-700">{value}</dd>
+      <dt className="text-brand-muted">{label}</dt>
+      <dd className="truncate font-mono font-semibold text-brand-ink">{value}</dd>
     </div>
   );
 }

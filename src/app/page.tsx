@@ -34,17 +34,17 @@ export default function Page() {
     <main className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
       <header className="mb-6 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-teal-700">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-accent">
             AI Observability
           </p>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          <h1 className="font-display text-2xl font-bold tracking-tight text-brand-ink sm:text-3xl">
             Agent Run Viewer
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-brand-muted">
             Step-by-step timeline, tool calls, and errors for AI agent runs.
           </p>
         </div>
-        <span className="inline-flex items-center rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-medium text-slate-600">
+        <span className="inline-flex items-center rounded-chip border border-[rgba(13,21,38,0.10)] bg-white px-2.5 py-0.5 text-xs font-medium text-brand-muted">
           Sample data
         </span>
       </header>
@@ -72,7 +72,7 @@ export default function Page() {
             <button
               type="button"
               onClick={() => setSelectedId(null)}
-              className="inline-flex items-center gap-1 text-sm font-medium text-sky-600 hover:text-sky-700 focus:outline-none focus-visible:underline"
+              className="inline-flex items-center gap-1 text-sm font-medium text-brand-link hover:text-brand-accent focus:outline-none focus-visible:underline"
             >
               <span aria-hidden="true">←</span> All runs
             </button>
@@ -81,7 +81,7 @@ export default function Page() {
         ) : (
           <div className="space-y-4">
             {result.warnings.length > 0 ? (
-              <p className="rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-800">
+              <p className="rounded-btn border border-[rgba(180,83,9,0.2)] bg-amber-50 px-3 py-2 text-xs text-brand-warn">
                 {result.warnings.length} entr
                 {result.warnings.length === 1 ? 'y was' : 'ies were'} skipped
                 while parsing. First issue: {result.warnings[0]}
@@ -96,9 +96,22 @@ export default function Page() {
         )
       ) : null}
 
-      <footer className="mt-10 border-t border-slate-200 pt-4 text-xs text-slate-400">
-        Data is synthetic and loaded from <code>/data/runs.json</code>. No real
-        logs or secrets are used.
+      <footer className="mt-10 border-t border-[rgba(13,21,38,0.10)] pt-4">
+        <p className="text-xs text-brand-muted">
+          Synthetic data demo — logs are generated samples, no real agent data or secrets are used.
+        </p>
+        <p className="mt-1 text-xs">
+          <a
+            href="https://oishizawads.github.io/portfolio-hub/"
+            className="font-semibold text-brand-accent-strong hover:underline"
+          >
+            ← Portfolio Hub
+          </a>
+          <span className="mx-2 text-brand-muted">·</span>
+          <span className="text-brand-muted">
+            Data from <code className="font-mono text-xs">/data/runs.json</code>
+          </span>
+        </p>
       </footer>
     </main>
   );
@@ -106,9 +119,9 @@ export default function Page() {
 
 function Loading() {
   return (
-    <div className="flex items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-12 text-sm text-slate-500">
+    <div className="flex items-center justify-center rounded-card border border-[rgba(13,21,38,0.10)] bg-brand-surface px-6 py-12 text-sm text-brand-muted shadow-card">
       <svg
-        className="mr-2 h-4 w-4 animate-spin text-slate-400"
+        className="mr-2 h-4 w-4 animate-spin text-brand-accent"
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden="true"

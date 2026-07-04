@@ -16,12 +16,12 @@ export function RunDetail({ run }: { run: AgentRun }) {
     { id: 'summary', label: 'Summary', content: <Summary run={run} /> },
     {
       id: 'timeline',
-      label: <span>Timeline <span className="text-slate-400">({run.steps.length})</span></span>,
+      label: <span>Timeline <span className="font-mono text-brand-muted/70">({run.steps.length})</span></span>,
       content: <Timeline run={run} />,
     },
     {
       id: 'tools',
-      label: <span>Tool Calls <span className="text-slate-400">({tools})</span></span>,
+      label: <span>Tool Calls <span className="font-mono text-brand-muted/70">({tools})</span></span>,
       content: <ToolCalls run={run} />,
     },
     {
@@ -30,9 +30,9 @@ export function RunDetail({ run }: { run: AgentRun }) {
         <span>
           Errors{' '}
           {failed > 0 ? (
-            <span className="text-rose-500">({failed})</span>
+            <span className="font-mono text-brand-error">({failed})</span>
           ) : (
-            <span className="text-slate-400">(0)</span>
+            <span className="font-mono text-brand-muted/70">(0)</span>
           )}
         </span>
       ),
@@ -43,10 +43,10 @@ export function RunDetail({ run }: { run: AgentRun }) {
   return (
     <section className="space-y-4">
       <div className="min-w-0">
-        <h2 className="truncate text-lg font-semibold text-slate-900">
+        <h2 className="truncate font-display text-lg font-semibold text-brand-ink">
           {run.name}
         </h2>
-        <p className="truncate text-xs text-slate-500">
+        <p className="truncate text-xs text-brand-muted">
           {run.id} · {run.agent} · {run.model}
         </p>
       </div>

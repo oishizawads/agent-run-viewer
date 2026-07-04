@@ -21,7 +21,7 @@ export function Summary({ run }: { run: AgentRun }) {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
         <StatusBadge status={run.status} />
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-brand-muted">
           {run.agent} · {run.model}
         </span>
       </div>
@@ -29,10 +29,10 @@ export function Summary({ run }: { run: AgentRun }) {
         {stats.map((s) => (
           <div
             key={s.label}
-            className="rounded-lg border border-slate-200 bg-white p-3"
+            className="rounded-card border border-[rgba(13,21,38,0.10)] bg-brand-surface p-3 shadow-card"
           >
-            <dt className="text-xs text-slate-500">{s.label}</dt>
-            <dd className="mt-1 text-lg font-semibold text-slate-900">
+            <dt className="text-xs uppercase tracking-wide text-brand-muted">{s.label}</dt>
+            <dd className="mt-1 font-mono text-lg font-semibold text-brand-ink">
               {s.value}
             </dd>
           </div>
@@ -53,9 +53,9 @@ export function Summary({ run }: { run: AgentRun }) {
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-lg border border-slate-200 bg-white p-3">
-      <dt className="text-xs text-slate-500">{label}</dt>
-      <dd className="mt-0.5 truncate font-medium text-slate-800">{value}</dd>
+    <div className="min-w-0 rounded-card border border-[rgba(13,21,38,0.10)] bg-brand-surface p-3 shadow-card">
+      <dt className="text-xs uppercase tracking-wide text-brand-muted">{label}</dt>
+      <dd className="mt-0.5 truncate font-medium text-brand-ink">{value}</dd>
     </div>
   );
 }
